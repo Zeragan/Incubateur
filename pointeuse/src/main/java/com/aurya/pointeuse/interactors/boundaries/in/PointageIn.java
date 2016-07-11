@@ -2,7 +2,7 @@ package com.aurya.pointeuse.interactors.boundaries.in;
 
 import java.util.Date;
 
-import com.aurya.communs.boundaries.in.InBoundary;
+import com.aurya.communs.interactors.boundaries.in.InBoundary;
 
 public interface PointageIn extends InBoundary
 {

@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import com.aurya.communs.boundaries.out.model.OutTranslator;
+import com.aurya.communs.interactors.boundaries.out.model.OutTranslator;
 import com.aurya.pointeuse.entities.Pointage;
 import com.aurya.pointeuse.gateways.PointagePreferences;
 

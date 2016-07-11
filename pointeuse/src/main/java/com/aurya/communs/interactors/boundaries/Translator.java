@@ -1,4 +1,4 @@
-package com.aurya.communs.boundaries;
+package com.aurya.communs.interactors.boundaries;
 
 import com.aurya.communs.entities.Entity;
 

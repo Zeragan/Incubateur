@@ -1,6 +1,6 @@
 package com.aurya.pointeuse.interactors.boundaries.out;
 
-import com.aurya.communs.boundaries.out.OutBoundary;
+import com.aurya.communs.interactors.boundaries.out.OutBoundary;
 import com.aurya.pointeuse.interactors.boundaries.out.model.ListePointageInfo;
 import com.aurya.pointeuse.interactors.boundaries.out.model.PointageInfo;
 

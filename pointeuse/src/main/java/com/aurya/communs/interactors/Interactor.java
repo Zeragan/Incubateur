@@ -1,7 +1,7 @@
 package com.aurya.communs.interactors;
 
-import com.aurya.communs.boundaries.in.InBoundary;
-import com.aurya.communs.boundaries.out.OutBoundary;
+import com.aurya.communs.interactors.boundaries.in.InBoundary;
+import com.aurya.communs.interactors.boundaries.out.OutBoundary;
 
 public abstract class Interactor<T extends OutBoundary> implements InBoundary
 {
