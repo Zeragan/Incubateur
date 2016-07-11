@@ -5,4 +5,6 @@ import com.aurya.communs.boundaries.Boundary;
 public interface OutBoundary extends Boundary
 {
 
+    void onError(String message);
+
 }

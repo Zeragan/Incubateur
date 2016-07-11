@@ -1,16 +1,16 @@
 package com.aurya.communs.entities;
 
-public abstract class Entity
+public abstract class Entity<T>
 {
 
-    private Long id = null;
+    private T id = null;
 
-    public Long getId()
+    public T getId()
     {
         return id;
     }
 
-    public void setId(Long id)
+    public void setId(T id)
     {
         if (this.id != null)
         {
@@ -18,5 +18,7 @@ public abstract class Entity
         }
         this.id = id;
     }
+
+    public abstract String getErrorMessage();
 
 }

@@ -148,8 +148,16 @@ public class PointageInteractor extends Interactor<PointageOut> implements Point
 
     private void persister(Pointage pointage)
     {
-        repository.persister(pointage);
-        out.pointage(translator.translate(pointage));
+        String erreur = pointage.getErrorMessage();
+        if (erreur == null)
+        {
+            repository.persister(pointage);
+            out.pointage(translator.translate(pointage));
+        }
+        else
+        {
+            out.onError(erreur);
+        }
     }
 
 }

@@ -4,13 +4,13 @@ import java.util.List;
 
 import com.aurya.communs.entities.Entity;
 
-public interface Repository<T extends Entity>
+public interface Repository<T, U extends Entity<T>>
 {
 
-    void persister(T entity);
+    void persister(U entity);
 
-    T recuperer(long id);
+    U recuperer(T id);
 
-    List<T> recupererTout();
+    List<U> recupererTout();
 
 }
