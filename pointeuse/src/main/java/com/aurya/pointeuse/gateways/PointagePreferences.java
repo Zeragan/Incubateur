@@ -25,4 +25,6 @@ public interface PointagePreferences extends Preferences
 
     String getExportSeparateur();
 
+    String getMailDestinataire();
+
 }

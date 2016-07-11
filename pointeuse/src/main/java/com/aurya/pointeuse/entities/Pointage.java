@@ -2,6 +2,7 @@ package com.aurya.pointeuse.entities;
 
 import java.util.Date;
 
+import com.aurya.communs.R;
 import com.aurya.communs.entities.Entity;
 
 public class Pointage extends Entity<Long>
@@ -53,11 +54,11 @@ public class Pointage extends Entity<Long>
     {
         if (debut == null)
         {
-            return "La date de début du pointage doit être renseignée";
+            return R.get("erreur2");
         }
         if (debut.after(fin))
         {
-            return "La date de fin du pointage doit être supérieure à la date de début";
+            return R.get("erreur3");
         }
         return null;
     }

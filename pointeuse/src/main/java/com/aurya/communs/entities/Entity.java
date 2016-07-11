@@ -1,5 +1,7 @@
 package com.aurya.communs.entities;
 
+import com.aurya.communs.R;
+
 public abstract class Entity<T>
 {
 
@@ -14,7 +16,7 @@ public abstract class Entity<T>
     {
         if (this.id != null)
         {
-            throw new IllegalStateException("Une entité ne peut pas changer d'identifiant");
+            throw new IllegalStateException(R.get("erreur1"));
         }
         this.id = id;
     }

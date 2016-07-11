@@ -3,8 +3,10 @@ package com.aurya.pointeuse.interactors;
 import java.util.Date;
 import java.util.List;
 
+import com.aurya.communs.R;
 import com.aurya.communs.interactors.Interactor;
 import com.aurya.pointeuse.entities.Pointage;
+import com.aurya.pointeuse.gateways.PointageEnvoi;
 import com.aurya.pointeuse.gateways.PointagePreferences;
 import com.aurya.pointeuse.gateways.PointageRepository;
 import com.aurya.pointeuse.interactors.boundaries.in.PointageIn;
@@ -22,6 +24,11 @@ public class PointageInteractor extends Interactor<PointageOut> implements Point
     private final PointagePreferences preferences;
 
     private final PointageTranslator translator;
+
+    /**
+     * Ce module est optionnel et doit être positionné avec {@link #setPointageEnvoi(PointageEnvoi)}.
+     */
+    private PointageEnvoi envoi = null;
 
     public PointageInteractor(PointageOut out, PointageRepository repository, PointagePreferences preferences)
     {
@@ -116,20 +123,35 @@ public class PointageInteractor extends Interactor<PointageOut> implements Point
     @Override
     public void exporter()
     {
-        StringBuilder export = new StringBuilder();
-        List<Pointage> pointages = repository.recupererTout();
-        for (Pointage pointage : pointages)
+        if (envoi != null)
         {
-            PointageInfo infos = translator.translate(pointage);
-            export.append(infos.getId());
-            export.append(preferences.getExportSeparateur());
-            export.append(infos.getDebut());
-            export.append(preferences.getExportSeparateur());
-            export.append(infos.getFin());
-            export.append(preferences.getExportSeparateur());
-            export.append(infos.getDuree());
+            StringBuilder export = new StringBuilder();
+            List<Pointage> pointages = repository.recupererTout();
+            for (Pointage pointage : pointages)
+            {
+                PointageInfo infos = translator.translate(pointage);
+                export.append(infos.getId());
+                export.append(preferences.getExportSeparateur());
+                export.append(infos.getDebut());
+                export.append(preferences.getExportSeparateur());
+                export.append(infos.getFin());
+                export.append(preferences.getExportSeparateur());
+                export.append(infos.getDuree());
+                export.append(System.lineSeparator());
+            }
+            envoi.envoyer(preferences.getMailDestinataire(), R.get("mail_sujet"), R.get("mail_corps"), R.get("mail_nom_piece_jointe"),
+                    export.toString().getBytes());
+            out.export(export.toString());
         }
-        out.export(export.toString());
+        else
+        {
+            out.onError(R.get("erreur4"));
+        }
+    }
+
+    public void setPointageEnvoi(PointageEnvoi envoi)
+    {
+        this.envoi = envoi;
     }
 
     private void lister(Date reference, Periode periode)
