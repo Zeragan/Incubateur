@@ -1,6 +1,6 @@
 package com.aurya.communs.gateways;
 
-public interface External
+public interface System
 {
 
 }

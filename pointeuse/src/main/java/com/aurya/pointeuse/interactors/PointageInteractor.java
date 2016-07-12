@@ -6,7 +6,7 @@ import java.util.List;
 import com.aurya.communs.R;
 import com.aurya.communs.interactors.Interactor;
 import com.aurya.pointeuse.entities.Pointage;
-import com.aurya.pointeuse.gateways.PointageEnvoi;
+import com.aurya.pointeuse.gateways.PointageEnvoiFichier;
 import com.aurya.pointeuse.gateways.PointagePreferences;
 import com.aurya.pointeuse.gateways.PointageRepository;
 import com.aurya.pointeuse.interactors.boundaries.in.PointageIn;
@@ -26,9 +26,9 @@ public class PointageInteractor extends Interactor<PointageOut> implements Point
     private final PointageTranslator translator;
 
     /**
-     * Ce module est optionnel et doit être positionné avec {@link #setPointageEnvoi(PointageEnvoi)}.
+     * Ce module est optionnel et doit être positionné avec {@link #setPointageEnvoi(PointageEnvoiFichier)}.
      */
-    private PointageEnvoi envoi = null;
+    private PointageEnvoiFichier envoi = null;
 
     public PointageInteractor(PointageOut out, PointageRepository repository, PointagePreferences preferences)
     {
@@ -139,7 +139,7 @@ public class PointageInteractor extends Interactor<PointageOut> implements Point
                 export.append(infos.getDuree());
                 export.append(System.lineSeparator());
             }
-            envoi.envoyer(preferences.getMailDestinataire(), R.get("mail_sujet"), R.get("mail_corps"), R.get("mail_nom_piece_jointe"),
+            envoi.envoyer(preferences.getExportDestinataire(), R.get("mail_sujet"), R.get("mail_corps"), R.get("mail_nom_piece_jointe"),
                     export.toString().getBytes());
             out.export(export.toString());
         }
@@ -149,7 +149,7 @@ public class PointageInteractor extends Interactor<PointageOut> implements Point
         }
     }
 
-    public void setPointageEnvoi(PointageEnvoi envoi)
+    public void setPointageEnvoi(PointageEnvoiFichier envoi)
     {
         this.envoi = envoi;
     }
